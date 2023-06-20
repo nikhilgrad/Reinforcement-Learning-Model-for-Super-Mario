@@ -261,7 +261,7 @@ env.close()
 ```
 
 
-**Below is the final model that I got after 7 days of this learning journey:)**
+**Below is the final model that I got after 7 days of training)**
 
 
 
