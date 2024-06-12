@@ -174,7 +174,7 @@ model.learn(total_timesteps=total_training_steps, callback=callback, reset_num_t
 
 This is another change from program written by [Nicholas Renotte](https://github.com/nicknochnack/MarioRL) as we are resuming from where the previous model stopped, we have set the `reset_num_timesteps` to **False** which by default is always set to **True**.
 
-### Combining to 2 different models
+### Combining to 2 different models - Ensemble learning
 
 I added this part because the model was not performing upto the mark even after training the model 1.7 million times which made sense but what I felt bad about was the inefficiency of my CPU which took around 6 days to train the model this many times. I would like everyone to see how my models faired upto 500k training steps.
 
@@ -194,7 +194,7 @@ https://github.com/nikhilgrad/super_mario/assets/117857370/1eb3d3a1-47d7-446d-9b
 
 Now the model from here were a bit distracted which means there is a good chance that due to more exploration and learning on an inefficient hardware(which reduced the frames per second to as low as 6) they might have undergone catastrophic forgetting. Catastrophic forgetting refers to a situation where a neural network or learning algorithm forgets previously learned information when it is trained on new data or tasks. This can be problematic in reinforcement learning when an agent trained on one task starts learning a new task and loses the knowledge or performance gained from the previous task. The low value of FPS(Frames Per Second) also results in slow learning which can also be a reason for the model not giving good result.
 
-On multiple obsevations I saw one very important difference between the 500k model and the 1.7M model and that was, the 500k model was good at jumping and many a times without any good reason. This might be due to the fact that the model learnt, which is, if Mario(the Agent) would just keep on jumping and move right it would gather more rewards. On the other hand the 1.7M model though not as good a jumper as 500k, was better at taking decisions like jumping over those rhombohedral monsters and tackling the bricks to get gold coins and in turn increasing the reward. So my idea was, what if we could combine both the models and check if the combined model with both the properties was any better. And so the below code actually shows how to combine 2 different models.
+On multiple obsevations I saw one very important difference between the 500k model and the 1.7M model and that was, the 500k model was good at jumping and many a times without any good reason. This might be due to the fact that the model learnt, which is, if Mario(the Agent) would just keep on jumping and move right it would gather more rewards. On the other hand the 1.7M model though not as good a jumper as 500k, was better at taking decisions like jumping over those rhombohedral monsters and tackling the bricks to get gold coins and in turn increasing the reward. So my idea was, what if we could combine both the models and check if the combined model with both the properties was any better. Initially I thought this is something completely new but then it rarely so happens, and even this time it was like that. On researching a bit I came to know that this combining of two models using their weights to get a better output is already an established method and is called as **Ensemble Learning**.  And so the below code actually shows how to combine 2 different models.
 
 For combining 2 different models we need to:
 - Load models we want to combine
